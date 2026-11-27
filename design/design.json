@@ -1,0 +1,2076 @@
+{
+ "items": [
+  {
+   "image_name": "raspberry_08s.jpg",
+   "concept": "raspberry",
+   "semantic": "food",
+   "visual": "red"
+  },
+  {
+   "image_name": "whipped_cream_02s.jpg",
+   "concept": "whipped_cream",
+   "semantic": "food",
+   "visual": "white"
+  },
+  {
+   "image_name": "eggplant_07s.jpg",
+   "concept": "eggplant",
+   "semantic": "food",
+   "visual": "black"
+  },
+  {
+   "image_name": "hummus_06s.jpg",
+   "concept": "hummus",
+   "semantic": "food",
+   "visual": "round"
+  },
+  {
+   "image_name": "breadstick_05s.jpg",
+   "concept": "breadstick",
+   "semantic": "food",
+   "visual": "long"
+  },
+  {
+   "image_name": "cardinal_14s.jpg",
+   "concept": "cardinal",
+   "semantic": "animal",
+   "visual": "red"
+  },
+  {
+   "image_name": "polar_bear_10s.jpg",
+   "concept": "polar_bear",
+   "semantic": "animal",
+   "visual": "white"
+  },
+  {
+   "image_name": "panther_10s.jpg",
+   "concept": "panther",
+   "semantic": "animal",
+   "visual": "black"
+  },
+  {
+   "image_name": "blowfish_14s.jpg",
+   "concept": "blowfish",
+   "semantic": "animal",
+   "visual": "round"
+  },
+  {
+   "image_name": "snake_11s.jpg",
+   "concept": "snake",
+   "semantic": "animal",
+   "visual": "long"
+  },
+  {
+   "image_name": "cardigan_01b.jpg",
+   "concept": "cardigan",
+   "semantic": "clothing",
+   "visual": "red"
+  },
+  {
+   "image_name": "bathrobe_09s.jpg",
+   "concept": "bathrobe",
+   "semantic": "clothing",
+   "visual": "white"
+  },
+  {
+   "image_name": "dress_10s.jpg",
+   "concept": "dress",
+   "semantic": "clothing",
+   "visual": "black"
+  },
+  {
+   "image_name": "hat_12s.jpg",
+   "concept": "hat",
+   "semantic": "clothing",
+   "visual": "round"
+  },
+  {
+   "image_name": "suspenders_05s.jpg",
+   "concept": "suspenders",
+   "semantic": "clothing",
+   "visual": "long"
+  },
+  {
+   "image_name": "couch_12s.jpg",
+   "concept": "couch",
+   "semantic": "furniture",
+   "visual": "red"
+  },
+  {
+   "image_name": "pillow_03s.jpg",
+   "concept": "pillow",
+   "semantic": "furniture",
+   "visual": "white"
+  },
+  {
+   "image_name": "recliner_01b.jpg",
+   "concept": "recliner",
+   "semantic": "furniture",
+   "visual": "black"
+  },
+  {
+   "image_name": "coffee_table_06s.jpg",
+   "concept": "coffee_table",
+   "semantic": "furniture",
+   "visual": "round"
+  },
+  {
+   "image_name": "coat_rack_05s.jpg",
+   "concept": "coat_rack",
+   "semantic": "furniture",
+   "visual": "long"
+  },
+  {
+   "image_name": "boxing_gloves_04s.jpg",
+   "concept": "boxing_gloves",
+   "semantic": "sport",
+   "visual": "red"
+  },
+  {
+   "image_name": "cleat_07s.jpg",
+   "concept": "cleat",
+   "semantic": "sport",
+   "visual": "white"
+  },
+  {
+   "image_name": "baseball_glove_12s.jpg",
+   "concept": "baseball_glove",
+   "semantic": "sport",
+   "visual": "black"
+  },
+  {
+   "image_name": "basketball_08s.jpg",
+   "concept": "basketball",
+   "semantic": "sport",
+   "visual": "round"
+  },
+  {
+   "image_name": "hockey_stick_12s.jpg",
+   "concept": "hockey_stick",
+   "semantic": "sport",
+   "visual": "long"
+  },
+  {
+   "image_name": "fire_alarm_21s.jpg",
+   "concept": "fire_alarm",
+   "semantic": "electronic",
+   "visual": "red"
+  },
+  {
+   "image_name": "thermostat_09s.jpg",
+   "concept": "thermostat",
+   "semantic": "electronic",
+   "visual": "white"
+  },
+  {
+   "image_name": "camera1_04s.jpg",
+   "concept": "camera1",
+   "semantic": "electronic",
+   "visual": "black"
+  },
+  {
+   "image_name": "record_player_04s.jpg",
+   "concept": "record_player",
+   "semantic": "electronic",
+   "visual": "round"
+  },
+  {
+   "image_name": "cable_06s.jpg",
+   "concept": "cable",
+   "semantic": "electronic",
+   "visual": "long"
+  }
+ ],
+ "fixed_trials": [
+  {
+   "type": "conflict",
+   "target": "raspberry_08s.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "visual",
+   "b": "eggplant_07s.jpg",
+   "b_role": "semantic",
+   "id": "F001"
+  },
+  {
+   "type": "conflict",
+   "target": "raspberry_08s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "semantic",
+   "id": "F002"
+  },
+  {
+   "type": "conflict",
+   "target": "raspberry_08s.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "visual",
+   "b": "breadstick_05s.jpg",
+   "b_role": "semantic",
+   "id": "F003"
+  },
+  {
+   "type": "conflict",
+   "target": "raspberry_08s.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "visual",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "semantic",
+   "id": "F004"
+  },
+  {
+   "type": "conflict",
+   "target": "raspberry_08s.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "visual",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "semantic",
+   "id": "F005"
+  },
+  {
+   "type": "conflict",
+   "target": "whipped_cream_02s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "visual",
+   "b": "eggplant_07s.jpg",
+   "b_role": "semantic",
+   "id": "F006"
+  },
+  {
+   "type": "conflict",
+   "target": "whipped_cream_02s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "semantic",
+   "id": "F007"
+  },
+  {
+   "type": "conflict",
+   "target": "whipped_cream_02s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "semantic",
+   "id": "F008"
+  },
+  {
+   "type": "conflict",
+   "target": "whipped_cream_02s.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "semantic",
+   "id": "F009"
+  },
+  {
+   "type": "conflict",
+   "target": "whipped_cream_02s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "visual",
+   "b": "breadstick_05s.jpg",
+   "b_role": "semantic",
+   "id": "F010"
+  },
+  {
+   "type": "conflict",
+   "target": "eggplant_07s.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "semantic",
+   "id": "F011"
+  },
+  {
+   "type": "conflict",
+   "target": "eggplant_07s.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "visual",
+   "b": "breadstick_05s.jpg",
+   "b_role": "semantic",
+   "id": "F012"
+  },
+  {
+   "type": "conflict",
+   "target": "eggplant_07s.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "visual",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "semantic",
+   "id": "F013"
+  },
+  {
+   "type": "conflict",
+   "target": "eggplant_07s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "semantic",
+   "id": "F014"
+  },
+  {
+   "type": "conflict",
+   "target": "eggplant_07s.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "semantic",
+   "id": "F015"
+  },
+  {
+   "type": "conflict",
+   "target": "hummus_06s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "visual",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "semantic",
+   "id": "F016"
+  },
+  {
+   "type": "conflict",
+   "target": "hummus_06s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "semantic",
+   "id": "F017"
+  },
+  {
+   "type": "conflict",
+   "target": "hummus_06s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "visual",
+   "b": "breadstick_05s.jpg",
+   "b_role": "semantic",
+   "id": "F018"
+  },
+  {
+   "type": "conflict",
+   "target": "hummus_06s.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "visual",
+   "b": "eggplant_07s.jpg",
+   "b_role": "semantic",
+   "id": "F019"
+  },
+  {
+   "type": "conflict",
+   "target": "hummus_06s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "semantic",
+   "id": "F020"
+  },
+  {
+   "type": "conflict",
+   "target": "breadstick_05s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "semantic",
+   "id": "F021"
+  },
+  {
+   "type": "conflict",
+   "target": "breadstick_05s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "visual",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "semantic",
+   "id": "F022"
+  },
+  {
+   "type": "conflict",
+   "target": "breadstick_05s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "semantic",
+   "id": "F023"
+  },
+  {
+   "type": "conflict",
+   "target": "breadstick_05s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "semantic",
+   "id": "F024"
+  },
+  {
+   "type": "conflict",
+   "target": "breadstick_05s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "visual",
+   "b": "eggplant_07s.jpg",
+   "b_role": "semantic",
+   "id": "F025"
+  },
+  {
+   "type": "conflict",
+   "target": "cardinal_14s.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "visual",
+   "b": "panther_10s.jpg",
+   "b_role": "semantic",
+   "id": "F026"
+  },
+  {
+   "type": "conflict",
+   "target": "cardinal_14s.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "visual",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "semantic",
+   "id": "F027"
+  },
+  {
+   "type": "conflict",
+   "target": "cardinal_14s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "visual",
+   "b": "snake_11s.jpg",
+   "b_role": "semantic",
+   "id": "F028"
+  },
+  {
+   "type": "conflict",
+   "target": "cardinal_14s.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "visual",
+   "b": "blowfish_14s.jpg",
+   "b_role": "semantic",
+   "id": "F029"
+  },
+  {
+   "type": "conflict",
+   "target": "cardinal_14s.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "visual",
+   "b": "panther_10s.jpg",
+   "b_role": "semantic",
+   "id": "F030"
+  },
+  {
+   "type": "conflict",
+   "target": "polar_bear_10s.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "visual",
+   "b": "panther_10s.jpg",
+   "b_role": "semantic",
+   "id": "F031"
+  },
+  {
+   "type": "conflict",
+   "target": "polar_bear_10s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "visual",
+   "b": "blowfish_14s.jpg",
+   "b_role": "semantic",
+   "id": "F032"
+  },
+  {
+   "type": "conflict",
+   "target": "polar_bear_10s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "visual",
+   "b": "snake_11s.jpg",
+   "b_role": "semantic",
+   "id": "F033"
+  },
+  {
+   "type": "conflict",
+   "target": "polar_bear_10s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "visual",
+   "b": "cardinal_14s.jpg",
+   "b_role": "semantic",
+   "id": "F034"
+  },
+  {
+   "type": "conflict",
+   "target": "polar_bear_10s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "visual",
+   "b": "snake_11s.jpg",
+   "b_role": "semantic",
+   "id": "F035"
+  },
+  {
+   "type": "conflict",
+   "target": "panther_10s.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "visual",
+   "b": "snake_11s.jpg",
+   "b_role": "semantic",
+   "id": "F036"
+  },
+  {
+   "type": "conflict",
+   "target": "panther_10s.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "visual",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "semantic",
+   "id": "F037"
+  },
+  {
+   "type": "conflict",
+   "target": "panther_10s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "visual",
+   "b": "blowfish_14s.jpg",
+   "b_role": "semantic",
+   "id": "F038"
+  },
+  {
+   "type": "conflict",
+   "target": "panther_10s.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "visual",
+   "b": "cardinal_14s.jpg",
+   "b_role": "semantic",
+   "id": "F039"
+  },
+  {
+   "type": "conflict",
+   "target": "panther_10s.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "visual",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "semantic",
+   "id": "F040"
+  },
+  {
+   "type": "conflict",
+   "target": "blowfish_14s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "visual",
+   "b": "cardinal_14s.jpg",
+   "b_role": "semantic",
+   "id": "F041"
+  },
+  {
+   "type": "conflict",
+   "target": "blowfish_14s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "visual",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "semantic",
+   "id": "F042"
+  },
+  {
+   "type": "conflict",
+   "target": "blowfish_14s.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "visual",
+   "b": "cardinal_14s.jpg",
+   "b_role": "semantic",
+   "id": "F043"
+  },
+  {
+   "type": "conflict",
+   "target": "blowfish_14s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "visual",
+   "b": "snake_11s.jpg",
+   "b_role": "semantic",
+   "id": "F044"
+  },
+  {
+   "type": "conflict",
+   "target": "blowfish_14s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "visual",
+   "b": "panther_10s.jpg",
+   "b_role": "semantic",
+   "id": "F045"
+  },
+  {
+   "type": "conflict",
+   "target": "snake_11s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "visual",
+   "b": "panther_10s.jpg",
+   "b_role": "semantic",
+   "id": "F046"
+  },
+  {
+   "type": "conflict",
+   "target": "snake_11s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "visual",
+   "b": "blowfish_14s.jpg",
+   "b_role": "semantic",
+   "id": "F047"
+  },
+  {
+   "type": "conflict",
+   "target": "snake_11s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "visual",
+   "b": "cardinal_14s.jpg",
+   "b_role": "semantic",
+   "id": "F048"
+  },
+  {
+   "type": "conflict",
+   "target": "snake_11s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "visual",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "semantic",
+   "id": "F049"
+  },
+  {
+   "type": "conflict",
+   "target": "snake_11s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "visual",
+   "b": "blowfish_14s.jpg",
+   "b_role": "semantic",
+   "id": "F050"
+  },
+  {
+   "type": "conflict",
+   "target": "cardigan_01b.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "visual",
+   "b": "suspenders_05s.jpg",
+   "b_role": "semantic",
+   "id": "F051"
+  },
+  {
+   "type": "conflict",
+   "target": "cardigan_01b.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "semantic",
+   "id": "F052"
+  },
+  {
+   "type": "conflict",
+   "target": "cardigan_01b.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "semantic",
+   "id": "F053"
+  },
+  {
+   "type": "conflict",
+   "target": "cardigan_01b.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "visual",
+   "b": "dress_10s.jpg",
+   "b_role": "semantic",
+   "id": "F054"
+  },
+  {
+   "type": "conflict",
+   "target": "cardigan_01b.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "visual",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "semantic",
+   "id": "F055"
+  },
+  {
+   "type": "conflict",
+   "target": "bathrobe_09s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "semantic",
+   "id": "F056"
+  },
+  {
+   "type": "conflict",
+   "target": "bathrobe_09s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "visual",
+   "b": "suspenders_05s.jpg",
+   "b_role": "semantic",
+   "id": "F057"
+  },
+  {
+   "type": "conflict",
+   "target": "bathrobe_09s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "visual",
+   "b": "dress_10s.jpg",
+   "b_role": "semantic",
+   "id": "F058"
+  },
+  {
+   "type": "conflict",
+   "target": "bathrobe_09s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "visual",
+   "b": "suspenders_05s.jpg",
+   "b_role": "semantic",
+   "id": "F059"
+  },
+  {
+   "type": "conflict",
+   "target": "bathrobe_09s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "visual",
+   "b": "cardigan_01b.jpg",
+   "b_role": "semantic",
+   "id": "F060"
+  },
+  {
+   "type": "conflict",
+   "target": "dress_10s.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "semantic",
+   "id": "F061"
+  },
+  {
+   "type": "conflict",
+   "target": "dress_10s.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "visual",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "semantic",
+   "id": "F062"
+  },
+  {
+   "type": "conflict",
+   "target": "dress_10s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "visual",
+   "b": "suspenders_05s.jpg",
+   "b_role": "semantic",
+   "id": "F063"
+  },
+  {
+   "type": "conflict",
+   "target": "dress_10s.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "visual",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "semantic",
+   "id": "F064"
+  },
+  {
+   "type": "conflict",
+   "target": "dress_10s.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "visual",
+   "b": "cardigan_01b.jpg",
+   "b_role": "semantic",
+   "id": "F065"
+  },
+  {
+   "type": "conflict",
+   "target": "hat_12s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "visual",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "semantic",
+   "id": "F066"
+  },
+  {
+   "type": "conflict",
+   "target": "hat_12s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "visual",
+   "b": "cardigan_01b.jpg",
+   "b_role": "semantic",
+   "id": "F067"
+  },
+  {
+   "type": "conflict",
+   "target": "hat_12s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "visual",
+   "b": "dress_10s.jpg",
+   "b_role": "semantic",
+   "id": "F068"
+  },
+  {
+   "type": "conflict",
+   "target": "hat_12s.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "visual",
+   "b": "suspenders_05s.jpg",
+   "b_role": "semantic",
+   "id": "F069"
+  },
+  {
+   "type": "conflict",
+   "target": "hat_12s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "visual",
+   "b": "dress_10s.jpg",
+   "b_role": "semantic",
+   "id": "F070"
+  },
+  {
+   "type": "conflict",
+   "target": "suspenders_05s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "visual",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "semantic",
+   "id": "F071"
+  },
+  {
+   "type": "conflict",
+   "target": "suspenders_05s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "visual",
+   "b": "dress_10s.jpg",
+   "b_role": "semantic",
+   "id": "F072"
+  },
+  {
+   "type": "conflict",
+   "target": "suspenders_05s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "visual",
+   "b": "cardigan_01b.jpg",
+   "b_role": "semantic",
+   "id": "F073"
+  },
+  {
+   "type": "conflict",
+   "target": "suspenders_05s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "semantic",
+   "id": "F074"
+  },
+  {
+   "type": "conflict",
+   "target": "suspenders_05s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "semantic",
+   "id": "F075"
+  },
+  {
+   "type": "conflict",
+   "target": "couch_12s.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "semantic",
+   "id": "F076"
+  },
+  {
+   "type": "conflict",
+   "target": "couch_12s.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "visual",
+   "b": "pillow_03s.jpg",
+   "b_role": "semantic",
+   "id": "F077"
+  },
+  {
+   "type": "conflict",
+   "target": "couch_12s.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "visual",
+   "b": "recliner_01b.jpg",
+   "b_role": "semantic",
+   "id": "F078"
+  },
+  {
+   "type": "conflict",
+   "target": "couch_12s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "visual",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "semantic",
+   "id": "F079"
+  },
+  {
+   "type": "conflict",
+   "target": "couch_12s.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "visual",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "semantic",
+   "id": "F080"
+  },
+  {
+   "type": "conflict",
+   "target": "pillow_03s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "semantic",
+   "id": "F081"
+  },
+  {
+   "type": "conflict",
+   "target": "pillow_03s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "visual",
+   "b": "recliner_01b.jpg",
+   "b_role": "semantic",
+   "id": "F082"
+  },
+  {
+   "type": "conflict",
+   "target": "pillow_03s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "visual",
+   "b": "couch_12s.jpg",
+   "b_role": "semantic",
+   "id": "F083"
+  },
+  {
+   "type": "conflict",
+   "target": "pillow_03s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "semantic",
+   "id": "F084"
+  },
+  {
+   "type": "conflict",
+   "target": "pillow_03s.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "visual",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "semantic",
+   "id": "F085"
+  },
+  {
+   "type": "conflict",
+   "target": "recliner_01b.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "visual",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "semantic",
+   "id": "F086"
+  },
+  {
+   "type": "conflict",
+   "target": "recliner_01b.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "visual",
+   "b": "couch_12s.jpg",
+   "b_role": "semantic",
+   "id": "F087"
+  },
+  {
+   "type": "conflict",
+   "target": "recliner_01b.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "semantic",
+   "id": "F088"
+  },
+  {
+   "type": "conflict",
+   "target": "recliner_01b.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "semantic",
+   "id": "F089"
+  },
+  {
+   "type": "conflict",
+   "target": "recliner_01b.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "visual",
+   "b": "pillow_03s.jpg",
+   "b_role": "semantic",
+   "id": "F090"
+  },
+  {
+   "type": "conflict",
+   "target": "coffee_table_06s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "visual",
+   "b": "recliner_01b.jpg",
+   "b_role": "semantic",
+   "id": "F091"
+  },
+  {
+   "type": "conflict",
+   "target": "coffee_table_06s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "visual",
+   "b": "couch_12s.jpg",
+   "b_role": "semantic",
+   "id": "F092"
+  },
+  {
+   "type": "conflict",
+   "target": "coffee_table_06s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "visual",
+   "b": "recliner_01b.jpg",
+   "b_role": "semantic",
+   "id": "F093"
+  },
+  {
+   "type": "conflict",
+   "target": "coffee_table_06s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "visual",
+   "b": "pillow_03s.jpg",
+   "b_role": "semantic",
+   "id": "F094"
+  },
+  {
+   "type": "conflict",
+   "target": "coffee_table_06s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "semantic",
+   "id": "F095"
+  },
+  {
+   "type": "conflict",
+   "target": "coat_rack_05s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "visual",
+   "b": "pillow_03s.jpg",
+   "b_role": "semantic",
+   "id": "F096"
+  },
+  {
+   "type": "conflict",
+   "target": "coat_rack_05s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "visual",
+   "b": "couch_12s.jpg",
+   "b_role": "semantic",
+   "id": "F097"
+  },
+  {
+   "type": "conflict",
+   "target": "coat_rack_05s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "visual",
+   "b": "pillow_03s.jpg",
+   "b_role": "semantic",
+   "id": "F098"
+  },
+  {
+   "type": "conflict",
+   "target": "coat_rack_05s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "visual",
+   "b": "recliner_01b.jpg",
+   "b_role": "semantic",
+   "id": "F099"
+  },
+  {
+   "type": "conflict",
+   "target": "coat_rack_05s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "visual",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "semantic",
+   "id": "F100"
+  },
+  {
+   "type": "conflict",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "visual",
+   "b": "cleat_07s.jpg",
+   "b_role": "semantic",
+   "id": "F101"
+  },
+  {
+   "type": "conflict",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "semantic",
+   "id": "F102"
+  },
+  {
+   "type": "conflict",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "visual",
+   "b": "basketball_08s.jpg",
+   "b_role": "semantic",
+   "id": "F103"
+  },
+  {
+   "type": "conflict",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "semantic",
+   "id": "F104"
+  },
+  {
+   "type": "conflict",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "semantic",
+   "id": "F105"
+  },
+  {
+   "type": "conflict",
+   "target": "cleat_07s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "semantic",
+   "id": "F106"
+  },
+  {
+   "type": "conflict",
+   "target": "cleat_07s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "semantic",
+   "id": "F107"
+  },
+  {
+   "type": "conflict",
+   "target": "cleat_07s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "semantic",
+   "id": "F108"
+  },
+  {
+   "type": "conflict",
+   "target": "cleat_07s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "visual",
+   "b": "boxing_gloves_04s.jpg",
+   "b_role": "semantic",
+   "id": "F109"
+  },
+  {
+   "type": "conflict",
+   "target": "cleat_07s.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "visual",
+   "b": "basketball_08s.jpg",
+   "b_role": "semantic",
+   "id": "F110"
+  },
+  {
+   "type": "conflict",
+   "target": "baseball_glove_12s.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "semantic",
+   "id": "F111"
+  },
+  {
+   "type": "conflict",
+   "target": "baseball_glove_12s.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "visual",
+   "b": "boxing_gloves_04s.jpg",
+   "b_role": "semantic",
+   "id": "F112"
+  },
+  {
+   "type": "conflict",
+   "target": "baseball_glove_12s.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "visual",
+   "b": "cleat_07s.jpg",
+   "b_role": "semantic",
+   "id": "F113"
+  },
+  {
+   "type": "conflict",
+   "target": "baseball_glove_12s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "visual",
+   "b": "cleat_07s.jpg",
+   "b_role": "semantic",
+   "id": "F114"
+  },
+  {
+   "type": "conflict",
+   "target": "baseball_glove_12s.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "visual",
+   "b": "basketball_08s.jpg",
+   "b_role": "semantic",
+   "id": "F115"
+  },
+  {
+   "type": "conflict",
+   "target": "basketball_08s.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "visual",
+   "b": "boxing_gloves_04s.jpg",
+   "b_role": "semantic",
+   "id": "F116"
+  },
+  {
+   "type": "conflict",
+   "target": "basketball_08s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "semantic",
+   "id": "F117"
+  },
+  {
+   "type": "conflict",
+   "target": "basketball_08s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "semantic",
+   "id": "F118"
+  },
+  {
+   "type": "conflict",
+   "target": "basketball_08s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "semantic",
+   "id": "F119"
+  },
+  {
+   "type": "conflict",
+   "target": "basketball_08s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "visual",
+   "b": "cleat_07s.jpg",
+   "b_role": "semantic",
+   "id": "F120"
+  },
+  {
+   "type": "conflict",
+   "target": "hockey_stick_12s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "semantic",
+   "id": "F121"
+  },
+  {
+   "type": "conflict",
+   "target": "hockey_stick_12s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "visual",
+   "b": "cleat_07s.jpg",
+   "b_role": "semantic",
+   "id": "F122"
+  },
+  {
+   "type": "conflict",
+   "target": "hockey_stick_12s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "visual",
+   "b": "basketball_08s.jpg",
+   "b_role": "semantic",
+   "id": "F123"
+  },
+  {
+   "type": "conflict",
+   "target": "hockey_stick_12s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "semantic",
+   "id": "F124"
+  },
+  {
+   "type": "conflict",
+   "target": "hockey_stick_12s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "visual",
+   "b": "boxing_gloves_04s.jpg",
+   "b_role": "semantic",
+   "id": "F125"
+  },
+  {
+   "type": "conflict",
+   "target": "fire_alarm_21s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "semantic",
+   "id": "F126"
+  },
+  {
+   "type": "conflict",
+   "target": "fire_alarm_21s.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "semantic",
+   "id": "F127"
+  },
+  {
+   "type": "conflict",
+   "target": "fire_alarm_21s.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "semantic",
+   "id": "F128"
+  },
+  {
+   "type": "conflict",
+   "target": "fire_alarm_21s.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "visual",
+   "b": "cable_06s.jpg",
+   "b_role": "semantic",
+   "id": "F129"
+  },
+  {
+   "type": "conflict",
+   "target": "fire_alarm_21s.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "visual",
+   "b": "camera1_04s.jpg",
+   "b_role": "semantic",
+   "id": "F130"
+  },
+  {
+   "type": "conflict",
+   "target": "thermostat_09s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "semantic",
+   "id": "F131"
+  },
+  {
+   "type": "conflict",
+   "target": "thermostat_09s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "visual",
+   "b": "fire_alarm_21s.jpg",
+   "b_role": "semantic",
+   "id": "F132"
+  },
+  {
+   "type": "conflict",
+   "target": "thermostat_09s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "visual",
+   "b": "cable_06s.jpg",
+   "b_role": "semantic",
+   "id": "F133"
+  },
+  {
+   "type": "conflict",
+   "target": "thermostat_09s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "visual",
+   "b": "cable_06s.jpg",
+   "b_role": "semantic",
+   "id": "F134"
+  },
+  {
+   "type": "conflict",
+   "target": "thermostat_09s.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "visual",
+   "b": "camera1_04s.jpg",
+   "b_role": "semantic",
+   "id": "F135"
+  },
+  {
+   "type": "conflict",
+   "target": "camera1_04s.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "semantic",
+   "id": "F136"
+  },
+  {
+   "type": "conflict",
+   "target": "camera1_04s.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "semantic",
+   "id": "F137"
+  },
+  {
+   "type": "conflict",
+   "target": "camera1_04s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "visual",
+   "b": "fire_alarm_21s.jpg",
+   "b_role": "semantic",
+   "id": "F138"
+  },
+  {
+   "type": "conflict",
+   "target": "camera1_04s.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "semantic",
+   "id": "F139"
+  },
+  {
+   "type": "conflict",
+   "target": "camera1_04s.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "visual",
+   "b": "cable_06s.jpg",
+   "b_role": "semantic",
+   "id": "F140"
+  },
+  {
+   "type": "conflict",
+   "target": "record_player_04s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "semantic",
+   "id": "F141"
+  },
+  {
+   "type": "conflict",
+   "target": "record_player_04s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "visual",
+   "b": "camera1_04s.jpg",
+   "b_role": "semantic",
+   "id": "F142"
+  },
+  {
+   "type": "conflict",
+   "target": "record_player_04s.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "visual",
+   "b": "cable_06s.jpg",
+   "b_role": "semantic",
+   "id": "F143"
+  },
+  {
+   "type": "conflict",
+   "target": "record_player_04s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "visual",
+   "b": "fire_alarm_21s.jpg",
+   "b_role": "semantic",
+   "id": "F144"
+  },
+  {
+   "type": "conflict",
+   "target": "record_player_04s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "semantic",
+   "id": "F145"
+  },
+  {
+   "type": "conflict",
+   "target": "cable_06s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "semantic",
+   "id": "F146"
+  },
+  {
+   "type": "conflict",
+   "target": "cable_06s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "semantic",
+   "id": "F147"
+  },
+  {
+   "type": "conflict",
+   "target": "cable_06s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "visual",
+   "b": "fire_alarm_21s.jpg",
+   "b_role": "semantic",
+   "id": "F148"
+  },
+  {
+   "type": "conflict",
+   "target": "cable_06s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "visual",
+   "b": "camera1_04s.jpg",
+   "b_role": "semantic",
+   "id": "F149"
+  },
+  {
+   "type": "conflict",
+   "target": "cable_06s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "semantic",
+   "id": "F150"
+  },
+  {
+   "type": "visual_only",
+   "target": "raspberry_08s.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "visual",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "unrelated",
+   "id": "F151"
+  },
+  {
+   "type": "visual_only",
+   "target": "whipped_cream_02s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "visual",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "unrelated",
+   "id": "F152"
+  },
+  {
+   "type": "visual_only",
+   "target": "eggplant_07s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "visual",
+   "b": "couch_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F153"
+  },
+  {
+   "type": "visual_only",
+   "target": "hummus_06s.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "visual",
+   "b": "pillow_03s.jpg",
+   "b_role": "unrelated",
+   "id": "F154"
+  },
+  {
+   "type": "visual_only",
+   "target": "breadstick_05s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "visual",
+   "b": "recliner_01b.jpg",
+   "b_role": "unrelated",
+   "id": "F155"
+  },
+  {
+   "type": "visual_only",
+   "target": "cardinal_14s.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "visual",
+   "b": "basketball_08s.jpg",
+   "b_role": "unrelated",
+   "id": "F156"
+  },
+  {
+   "type": "visual_only",
+   "target": "polar_bear_10s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "visual",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F157"
+  },
+  {
+   "type": "visual_only",
+   "target": "panther_10s.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "visual",
+   "b": "boxing_gloves_04s.jpg",
+   "b_role": "unrelated",
+   "id": "F158"
+  },
+  {
+   "type": "visual_only",
+   "target": "blowfish_14s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "visual",
+   "b": "cleat_07s.jpg",
+   "b_role": "unrelated",
+   "id": "F159"
+  },
+  {
+   "type": "visual_only",
+   "target": "snake_11s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "visual",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F160"
+  },
+  {
+   "type": "visual_only",
+   "target": "cardigan_01b.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "visual",
+   "b": "record_player_04s.jpg",
+   "b_role": "unrelated",
+   "id": "F161"
+  },
+  {
+   "type": "visual_only",
+   "target": "bathrobe_09s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "visual",
+   "b": "cable_06s.jpg",
+   "b_role": "unrelated",
+   "id": "F162"
+  },
+  {
+   "type": "visual_only",
+   "target": "dress_10s.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "visual",
+   "b": "fire_alarm_21s.jpg",
+   "b_role": "unrelated",
+   "id": "F163"
+  },
+  {
+   "type": "visual_only",
+   "target": "hat_12s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "visual",
+   "b": "thermostat_09s.jpg",
+   "b_role": "unrelated",
+   "id": "F164"
+  },
+  {
+   "type": "visual_only",
+   "target": "suspenders_05s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "visual",
+   "b": "camera1_04s.jpg",
+   "b_role": "unrelated",
+   "id": "F165"
+  },
+  {
+   "type": "visual_only",
+   "target": "couch_12s.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "visual",
+   "b": "hummus_06s.jpg",
+   "b_role": "unrelated",
+   "id": "F166"
+  },
+  {
+   "type": "visual_only",
+   "target": "pillow_03s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "visual",
+   "b": "breadstick_05s.jpg",
+   "b_role": "unrelated",
+   "id": "F167"
+  },
+  {
+   "type": "visual_only",
+   "target": "recliner_01b.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "visual",
+   "b": "raspberry_08s.jpg",
+   "b_role": "unrelated",
+   "id": "F168"
+  },
+  {
+   "type": "visual_only",
+   "target": "coffee_table_06s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "visual",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "unrelated",
+   "id": "F169"
+  },
+  {
+   "type": "visual_only",
+   "target": "coat_rack_05s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "visual",
+   "b": "eggplant_07s.jpg",
+   "b_role": "unrelated",
+   "id": "F170"
+  },
+  {
+   "type": "visual_only",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "visual",
+   "b": "blowfish_14s.jpg",
+   "b_role": "unrelated",
+   "id": "F171"
+  },
+  {
+   "type": "visual_only",
+   "target": "cleat_07s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "visual",
+   "b": "snake_11s.jpg",
+   "b_role": "unrelated",
+   "id": "F172"
+  },
+  {
+   "type": "visual_only",
+   "target": "baseball_glove_12s.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "visual",
+   "b": "cardinal_14s.jpg",
+   "b_role": "unrelated",
+   "id": "F173"
+  },
+  {
+   "type": "visual_only",
+   "target": "basketball_08s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "visual",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "unrelated",
+   "id": "F174"
+  },
+  {
+   "type": "visual_only",
+   "target": "hockey_stick_12s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "visual",
+   "b": "panther_10s.jpg",
+   "b_role": "unrelated",
+   "id": "F175"
+  },
+  {
+   "type": "visual_only",
+   "target": "fire_alarm_21s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "visual",
+   "b": "hat_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F176"
+  },
+  {
+   "type": "visual_only",
+   "target": "thermostat_09s.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "visual",
+   "b": "suspenders_05s.jpg",
+   "b_role": "unrelated",
+   "id": "F177"
+  },
+  {
+   "type": "visual_only",
+   "target": "camera1_04s.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "visual",
+   "b": "cardigan_01b.jpg",
+   "b_role": "unrelated",
+   "id": "F178"
+  },
+  {
+   "type": "visual_only",
+   "target": "record_player_04s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "visual",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "unrelated",
+   "id": "F179"
+  },
+  {
+   "type": "visual_only",
+   "target": "cable_06s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "visual",
+   "b": "dress_10s.jpg",
+   "b_role": "unrelated",
+   "id": "F180"
+  },
+  {
+   "type": "semantic_only",
+   "target": "raspberry_08s.jpg",
+   "a": "whipped_cream_02s.jpg",
+   "a_role": "semantic",
+   "b": "recliner_01b.jpg",
+   "b_role": "unrelated",
+   "id": "F181"
+  },
+  {
+   "type": "semantic_only",
+   "target": "whipped_cream_02s.jpg",
+   "a": "eggplant_07s.jpg",
+   "a_role": "semantic",
+   "b": "coffee_table_06s.jpg",
+   "b_role": "unrelated",
+   "id": "F182"
+  },
+  {
+   "type": "semantic_only",
+   "target": "eggplant_07s.jpg",
+   "a": "hummus_06s.jpg",
+   "a_role": "semantic",
+   "b": "coat_rack_05s.jpg",
+   "b_role": "unrelated",
+   "id": "F183"
+  },
+  {
+   "type": "semantic_only",
+   "target": "hummus_06s.jpg",
+   "a": "breadstick_05s.jpg",
+   "a_role": "semantic",
+   "b": "couch_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F184"
+  },
+  {
+   "type": "semantic_only",
+   "target": "breadstick_05s.jpg",
+   "a": "raspberry_08s.jpg",
+   "a_role": "semantic",
+   "b": "pillow_03s.jpg",
+   "b_role": "unrelated",
+   "id": "F185"
+  },
+  {
+   "type": "semantic_only",
+   "target": "cardinal_14s.jpg",
+   "a": "polar_bear_10s.jpg",
+   "a_role": "semantic",
+   "b": "baseball_glove_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F186"
+  },
+  {
+   "type": "semantic_only",
+   "target": "polar_bear_10s.jpg",
+   "a": "panther_10s.jpg",
+   "a_role": "semantic",
+   "b": "basketball_08s.jpg",
+   "b_role": "unrelated",
+   "id": "F187"
+  },
+  {
+   "type": "semantic_only",
+   "target": "panther_10s.jpg",
+   "a": "blowfish_14s.jpg",
+   "a_role": "semantic",
+   "b": "hockey_stick_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F188"
+  },
+  {
+   "type": "semantic_only",
+   "target": "blowfish_14s.jpg",
+   "a": "snake_11s.jpg",
+   "a_role": "semantic",
+   "b": "boxing_gloves_04s.jpg",
+   "b_role": "unrelated",
+   "id": "F189"
+  },
+  {
+   "type": "semantic_only",
+   "target": "snake_11s.jpg",
+   "a": "cardinal_14s.jpg",
+   "a_role": "semantic",
+   "b": "cleat_07s.jpg",
+   "b_role": "unrelated",
+   "id": "F190"
+  },
+  {
+   "type": "semantic_only",
+   "target": "cardigan_01b.jpg",
+   "a": "bathrobe_09s.jpg",
+   "a_role": "semantic",
+   "b": "camera1_04s.jpg",
+   "b_role": "unrelated",
+   "id": "F191"
+  },
+  {
+   "type": "semantic_only",
+   "target": "bathrobe_09s.jpg",
+   "a": "dress_10s.jpg",
+   "a_role": "semantic",
+   "b": "record_player_04s.jpg",
+   "b_role": "unrelated",
+   "id": "F192"
+  },
+  {
+   "type": "semantic_only",
+   "target": "dress_10s.jpg",
+   "a": "hat_12s.jpg",
+   "a_role": "semantic",
+   "b": "cable_06s.jpg",
+   "b_role": "unrelated",
+   "id": "F193"
+  },
+  {
+   "type": "semantic_only",
+   "target": "hat_12s.jpg",
+   "a": "suspenders_05s.jpg",
+   "a_role": "semantic",
+   "b": "fire_alarm_21s.jpg",
+   "b_role": "unrelated",
+   "id": "F194"
+  },
+  {
+   "type": "semantic_only",
+   "target": "suspenders_05s.jpg",
+   "a": "cardigan_01b.jpg",
+   "a_role": "semantic",
+   "b": "thermostat_09s.jpg",
+   "b_role": "unrelated",
+   "id": "F195"
+  },
+  {
+   "type": "semantic_only",
+   "target": "couch_12s.jpg",
+   "a": "pillow_03s.jpg",
+   "a_role": "semantic",
+   "b": "eggplant_07s.jpg",
+   "b_role": "unrelated",
+   "id": "F196"
+  },
+  {
+   "type": "semantic_only",
+   "target": "pillow_03s.jpg",
+   "a": "recliner_01b.jpg",
+   "a_role": "semantic",
+   "b": "hummus_06s.jpg",
+   "b_role": "unrelated",
+   "id": "F197"
+  },
+  {
+   "type": "semantic_only",
+   "target": "recliner_01b.jpg",
+   "a": "coffee_table_06s.jpg",
+   "a_role": "semantic",
+   "b": "breadstick_05s.jpg",
+   "b_role": "unrelated",
+   "id": "F198"
+  },
+  {
+   "type": "semantic_only",
+   "target": "coffee_table_06s.jpg",
+   "a": "coat_rack_05s.jpg",
+   "a_role": "semantic",
+   "b": "raspberry_08s.jpg",
+   "b_role": "unrelated",
+   "id": "F199"
+  },
+  {
+   "type": "semantic_only",
+   "target": "coat_rack_05s.jpg",
+   "a": "couch_12s.jpg",
+   "a_role": "semantic",
+   "b": "whipped_cream_02s.jpg",
+   "b_role": "unrelated",
+   "id": "F200"
+  },
+  {
+   "type": "semantic_only",
+   "target": "boxing_gloves_04s.jpg",
+   "a": "cleat_07s.jpg",
+   "a_role": "semantic",
+   "b": "panther_10s.jpg",
+   "b_role": "unrelated",
+   "id": "F201"
+  },
+  {
+   "type": "semantic_only",
+   "target": "cleat_07s.jpg",
+   "a": "baseball_glove_12s.jpg",
+   "a_role": "semantic",
+   "b": "blowfish_14s.jpg",
+   "b_role": "unrelated",
+   "id": "F202"
+  },
+  {
+   "type": "semantic_only",
+   "target": "baseball_glove_12s.jpg",
+   "a": "basketball_08s.jpg",
+   "a_role": "semantic",
+   "b": "snake_11s.jpg",
+   "b_role": "unrelated",
+   "id": "F203"
+  },
+  {
+   "type": "semantic_only",
+   "target": "basketball_08s.jpg",
+   "a": "hockey_stick_12s.jpg",
+   "a_role": "semantic",
+   "b": "cardinal_14s.jpg",
+   "b_role": "unrelated",
+   "id": "F204"
+  },
+  {
+   "type": "semantic_only",
+   "target": "hockey_stick_12s.jpg",
+   "a": "boxing_gloves_04s.jpg",
+   "a_role": "semantic",
+   "b": "polar_bear_10s.jpg",
+   "b_role": "unrelated",
+   "id": "F205"
+  },
+  {
+   "type": "semantic_only",
+   "target": "fire_alarm_21s.jpg",
+   "a": "thermostat_09s.jpg",
+   "a_role": "semantic",
+   "b": "dress_10s.jpg",
+   "b_role": "unrelated",
+   "id": "F206"
+  },
+  {
+   "type": "semantic_only",
+   "target": "thermostat_09s.jpg",
+   "a": "camera1_04s.jpg",
+   "a_role": "semantic",
+   "b": "hat_12s.jpg",
+   "b_role": "unrelated",
+   "id": "F207"
+  },
+  {
+   "type": "semantic_only",
+   "target": "camera1_04s.jpg",
+   "a": "record_player_04s.jpg",
+   "a_role": "semantic",
+   "b": "suspenders_05s.jpg",
+   "b_role": "unrelated",
+   "id": "F208"
+  },
+  {
+   "type": "semantic_only",
+   "target": "record_player_04s.jpg",
+   "a": "cable_06s.jpg",
+   "a_role": "semantic",
+   "b": "cardigan_01b.jpg",
+   "b_role": "unrelated",
+   "id": "F209"
+  },
+  {
+   "type": "semantic_only",
+   "target": "cable_06s.jpg",
+   "a": "fire_alarm_21s.jpg",
+   "a_role": "semantic",
+   "b": "bathrobe_09s.jpg",
+   "b_role": "unrelated",
+   "id": "F210"
+  }
+ ]
+}

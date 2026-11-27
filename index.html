@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Similarity Judgment Task</title>
+    <script src="https://unpkg.com/jspsych@7.3.4"></script>
+    <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.2.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.3.0"></script>
+    <style>
+        .dat-grid { display: grid; grid-template-columns: 30px 240px; gap: 8px 6px; justify-content: center; align-items: center; }
+        .dat-grid input { font-size: 16px; padding: 4px 6px; }
+        .left-text { text-align: left; max-width: 720px; margin: auto; }
+        #aut-box { width: 520px; height: 240px; font-size: 16px; padding: 8px; }
+        #aut-timer { font-weight: bold; }
+    </style>
+</head>
+<body></body>
+<script>
+
+// ============================================================================
+// CONFIGURATION - Edit these values for your experiment
+// ============================================================================
+
+const CONFIG = {
+    // Stimuli and design (design.json is written by stimulus_selection/generate_design.py)
+    imageDirectory: "stimuli/things_images/",
+    designFile: "design/design.json",
+
+    // Triplet trials. Fixed trials (150 conflict + 30 visual-only + 30 semantic-only)
+    // are the same for every participant; the rest are generated per participant.
+    numRandomTrials: 160,   // random triplets over the 30 images (embedding coverage)
+    numRepeatTrials: 20,    // conflict trials shown a second time (response reliability)
+    numCheckTrials: 10,     // attention checks (one choice is identical to the target)
+    numBlocks: 4,           // breaks between blocks
+
+    // Creativity tasks
+    autObjects: ["brick", "paperclip"],   // Alternative Uses Task objects (not in the image set)
+    autSeconds: 120,                      // time per object
+
+    // Text shown in the consent form and instructions; must match your approved protocol / SONA listing
+    sessionLengthText: "about one hour",
+
+    // Data saving (DataPipe). This is the ID from the first THINGS triplet study; files from this
+    // study are distinguished by filenamePrefix. Replace with a new DataPipe experiment if you want
+    // the data in a separate OSF component.
+    experimentId: "Af3iIdETyeVl",
+    filenamePrefix: "things_triplet_v2",
+
+    // SONA integration - set these to the NEW study's values before launching
+    sonaExperimentId: "REPLACE_ME",
+    sonaCreditToken: "REPLACE_ME",
+
+    // RT (ms) below which participants get a "too fast" warning
+    speedThreshold: 900
+};
+
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+
+const urlvar = new URLSearchParams(window.location.search);
+const sona_id = urlvar.get('workerId');
+// ?test=1 shortens the AUT timer and skips data saving / SONA redirect (for piloting the flow)
+const TEST_MODE = urlvar.get('test') === '1';
+
+const jsPsych = initJsPsych({
+    show_progress_bar: true,
+    auto_update_progress_bar: false,
+    max_load_time: 120000,
+    on_finish: function() {
+        if (TEST_MODE) {
+            window.EXPERIMENT_DONE = true;
+            jsPsych.data.displayData('csv');
+            return;
+        }
+        const completionUrl = `https://uwmadison.sona-systems.com/webstudy_credit.aspx?experiment_id=${CONFIG.sonaExperimentId}&credit_token=${CONFIG.sonaCreditToken}&survey_code=${sona_id}`;
+        window.location.assign(completionUrl);
+    }
+});
+
+const secret_code = jsPsych.randomization.randomID(8);
+const filename = `${CONFIG.filenamePrefix}_${secret_code}.csv`;
+jsPsych.data.addProperties({ worker_id: sona_id, session_code: secret_code });
+
+if (CONFIG.sonaExperimentId === "REPLACE_ME") {
+    console.warn("CONFIG.sonaExperimentId / sonaCreditToken are placeholders - set them before launching.");
+}
+
+const timeline = [];
+let ITEMS = [];          // [{image_name, concept, semantic, visual}]
+let ITEM_INFO = {};      // image_name -> item
+let n_main_trials = 0;
+let completed_main_trials = 0;
+
+const saveData = (suffix) => ({
+    type: jsPsychPipe,
+    action: "save",
+    experiment_id: CONFIG.experimentId,
+    filename: suffix ? filename.replace('.csv', `_${suffix}.csv`) : filename,
+    data_string: () => jsPsych.data.get().csv()
+});
+
+// ============================================================================
+// TRIPLET TRIAL GENERATION
+// ============================================================================
+
+const shuffle = (a) => jsPsych.randomization.shuffle(a);
+
+// Role of a choice image relative to the target, from the stimulus grid
+function roleOf(target, choice) {
+    const t = ITEM_INFO[target], c = ITEM_INFO[choice];
+    if (target === choice) return 'identical';
+    if (t.semantic === c.semantic) return 'semantic';
+    if (t.visual === c.visual) return 'visual';
+    return 'unrelated';
+}
+
+// Put the two choices in a random left/right order
+function makeTrial(type, id, target, a, b) {
+    const [c1, c2] = Math.random() < 0.5 ? [a, b] : [b, a];
+    return {
+        triplet_type: type, trial_id: id, stimulus: target, choice1: c1, choice2: c2,
+        choice1_role: roleOf(target, c1), choice2_role: roleOf(target, c2)
+    };
+}
+
+function createTrialSequence(design) {
+    const names = ITEMS.map(i => i.image_name);
+
+    const fixed = design.fixed_trials.map(t => makeTrial(t.type, t.id, t.target, t.a, t.b));
+
+    const random = [];
+    for (let i = 0; i < CONFIG.numRandomTrials; i++) {
+        const [t, a, b] = jsPsych.randomization.sampleWithoutReplacement(names, 3);
+        random.push(makeTrial('random', `R${i + 1}`, t, a, b));
+    }
+
+    const checks = [];
+    for (let i = 0; i < CONFIG.numCheckTrials; i++) {
+        const [t, other] = jsPsych.randomization.sampleWithoutReplacement(names, 2);
+        checks.push(makeTrial('check', `C${i + 1}`, t, t, other));
+    }
+
+    let seq = shuffle(fixed.concat(random, checks));
+
+    // Repeats: conflict trials from the first half are shown again in the second half
+    const half = Math.floor(seq.length / 2);
+    const firstHalfConflict = seq.slice(0, half).filter(t => t.triplet_type === 'conflict');
+    const toRepeat = jsPsych.randomization.sampleWithoutReplacement(
+        firstHalfConflict, Math.min(CONFIG.numRepeatTrials, firstHalfConflict.length));
+    const secondHalf = seq.slice(half);
+    toRepeat.forEach(t => {
+        const a = t.choice1, b = t.choice2;
+        const rep = makeTrial('repeat', t.trial_id, t.stimulus, a, b);
+        const pos = Math.floor(Math.random() * (secondHalf.length + 1));
+        secondHalf.splice(pos, 0, rep);
+    });
+    seq = seq.slice(0, half).concat(secondHalf);
+    seq.forEach((t, i) => { t.triplet_index = i + 1; });
+    return seq;
+}
+
+// ============================================================================
+// INTRO SCREENS
+// ============================================================================
+
+const welcome = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "Welcome to the experiment. Press any key to begin."
+};
+
+const fullscreen = { type: jsPsychFullscreen, fullscreen_mode: true };
+
+// Consent - SONA (UW-Madison) consent form
+const consent = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<div class="left-text" style="max-width:700px;">
+        <h2 style="text-align:center;">UNIVERSITY OF WISCONSIN&ndash;MADISON</h2>
+        <h3 style="text-align:center;">Research Participant Information and Consent Form</h3>
+        <p><strong>Title of the Study:</strong> Learning meanings of words and objects</p>
+        <p><strong>Principal Investigator:</strong> Tim Rogers (ttrogers@wisc.edu)</p>
+
+        <h4>DESCRIPTION OF THE RESEARCH</h4>
+        <p>You are invited to participate in a research study about the process by which people learn to recognize and understand the meanings of words and pictures. This study is recruiting participants above the age of 18 who are students in the Psychology Department. Your participation is voluntary. The research will be conducted online through a web browser.</p>
+
+        <h4>WHAT WILL MY PARTICIPATION INVOLVE?</h4>
+        <p>Participants will be asked to complete one session of ${CONFIG.sessionLengthText}. During this time you will view words or pictures on the computer screen and will be asked to press keys on the keyboard or mouse in response. You may also be asked to complete one or more questionnaires.</p>
+
+        <h4>HOW WILL I BE COMPENSATED FOR PARTICIPATING?</h4>
+        <p>You will be compensated with research participation credit at the normal rate of 1 credit for every half hour of participation.</p>
+
+        <h4>ARE THERE ANY RISKS TO ME?</h4>
+        <p>Participants may risk accidental breach of confidentiality. There are no other anticipated risks to subjects participating in this experiment.</p>
+
+        <h4>ARE THERE ANY BENEFITS TO ME?</h4>
+        <p>There are no direct benefits to you for participation in this study.</p>
+
+        <h4>HOW WILL MY CONFIDENTIALITY BE PROTECTED?</h4>
+        <p>All data will be identified only with a randomly-generated participant number and not with your name or other identifying information. While there will probably be publications as a result of this study, your name will not be used. Only group characteristics will be published.</p>
+
+        <h4>WHOM SHOULD I CONTACT IF I HAVE QUESTIONS?</h4>
+        <p>You may ask any questions about the research at any time by emailing the Principal Investigator Tim Rogers at ttrogers@wisc.edu. If you have questions about your rights as a research participant you should contact the Social &amp; Behavioral Science IRB at UW Madison at (608) 263-2320.</p>
+
+        <p>Your participation is completely voluntary. If you decide not to participate or to withdraw from the study it will have no effect on your grade in class.</p>
+
+        <p>Clicking &ldquo;I consent&rdquo; below indicates that you have read this document and voluntarily consent to participate in the study.</p>
+
+        <p style="border: 2px solid #b00; background: #fdd; padding: 12px; border-radius: 6px;">
+            <strong>Important:</strong> Do not refresh or reload this page at any time during the experiment.
+            Refreshing will result in the loss of your data and can affect your credit.</p>
+    </div>`,
+    choices: ["I consent"]
+};
+
+const overview = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<div class="left-text">
+        <p>This study has three parts:</p>
+        <ol>
+            <li>Two short word and idea tasks (about 8 minutes)</li>
+            <li>A picture similarity task (about 30 minutes, with breaks)</li>
+            <li>A few questionnaires about how you think (about 10 minutes)</li>
+        </ol>
+        <p>Please complete the study in one sitting, on your own, without looking anything up.</p>
+    </div>`,
+    choices: ["Continue"]
+};
+
+// ============================================================================
+// PART 1: CREATIVITY TASKS (run first so the pictures cannot prime the words)
+// ============================================================================
+
+// --- Divergent Association Task (Olson et al., 2021); instructions as on datcreativity.com ---
+const dat = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: `<div class="left-text">
+        <h3>Word task</h3>
+        <p>Please enter 10 words that are as <strong>different</strong> from each other as possible, in all meanings and uses of the words.</p>
+        <p><strong>Rules</strong></p>
+        <ol>
+            <li>Only <strong>single words</strong> in English.</li>
+            <li>Only <strong>nouns</strong> (e.g., things, objects, concepts).</li>
+            <li><strong>No proper nouns</strong> (e.g., no specific people or places).</li>
+            <li><strong>No specialised vocabulary</strong> (e.g., no technical terms).</li>
+            <li>Think of the words <strong>on your own</strong> (e.g., do not just look at objects in your surroundings).</li>
+            <li><strong>Be creative!</strong></li>
+        </ol>
+    </div>`,
+    html: '<div class="dat-grid">' + Array.from({ length: 10 }, (_, i) =>
+        `<label for="dat${i + 1}">${i + 1}.</label><input type="text" id="dat${i + 1}" name="dat_${i + 1}" required
+            pattern="[A-Za-z][A-Za-z\\-']*" title="Please enter a single word" autocomplete="off" spellcheck="false">`
+    ).join('') + '</div><br>',
+    button_label: "Continue",
+    data: { task: 'dat' },
+    on_finish: function(data) {
+        data.dat_words = Array.from({ length: 10 }, (_, i) => (data.response[`dat_${i + 1}`] || '').trim().toLowerCase()).join('|');
+    }
+};
+
+// --- Alternative Uses Task (timed, one object per screen) ---
+const aut_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<div class="left-text">
+        <h3>Uses task</h3>
+        <p>Next, you will see the name of an everyday object. Your task is to come up with as many
+        <strong>creative, unusual uses</strong> for that object as you can.</p>
+        <p>For example, a creative use for a <em>newspaper</em> might be to fold it into a hat.</p>
+        <p>Type <strong>one use per line</strong> (press Enter after each one). You will have
+        <strong>${Math.round(CONFIG.autSeconds / 60)} minutes</strong> for each object, and there are
+        ${CONFIG.autObjects.length} objects. The screen will move on automatically when time is up,
+        so keep going until then.</p>
+    </div>`,
+    choices: ["Start"]
+};
+
+let autText = '';
+function autTrial(object) {
+    const seconds = TEST_MODE ? 3 : CONFIG.autSeconds;
+    let interval = null;
+    return {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `<p>List as many creative, unusual uses as you can for a:</p>
+            <h2>${object.toUpperCase()}</h2>
+            <p style="font-size:14px;">One use per line. Time remaining: <span id="aut-timer"></span></p>
+            <textarea id="aut-box" placeholder="Type one use per line..."></textarea>`,
+        choices: "NO_KEYS",
+        trial_duration: seconds * 1000,
+        data: { task: 'aut', aut_object: object },
+        on_load: function() {
+            autText = '';
+            const box = document.getElementById('aut-box');
+            const timer = document.getElementById('aut-timer');
+            const end = performance.now() + seconds * 1000;
+            const tick = () => {
+                const s = Math.max(0, Math.ceil((end - performance.now()) / 1000));
+                timer.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+            };
+            tick();
+            interval = setInterval(tick, 250);
+            box.addEventListener('input', () => { autText = box.value; });
+            box.focus();
+        },
+        on_finish: function(data) {
+            clearInterval(interval);
+            // uses separated by " | " so the response stays on one CSV line
+            data.aut_response = autText.split(/\n+/).map(s => s.trim()).filter(s => s.length > 0).join(' | ');
+        }
+    };
+}
+
+// ============================================================================
+// PART 2: TRIPLET TASK
+// ============================================================================
+
+const triplet_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: () => `<div class="left-text">
+        <h3>Picture task</h3>
+        <p>In each trial of this task, you will see three images: one target image on top, and two choice images beneath the target image.</p>
+        <p>For each trial, <strong>please select the image that is most similar to the target image on top, using any criteria.</strong></p>
+        <p>There may not be a clear answer &mdash; if so, just use your best judgment. There are no right or wrong answers; we are interested in how <em>you</em> see things.</p>
+        <p>You will see the same images many times in different combinations. There will be ${n_main_trials} trials, with breaks along the way.</p>
+        <p>Click 'Continue' to begin.</p>
+    </div>`,
+    choices: ["Continue"],
+    post_trial_gap: 1000
+};
+
+const tripletTrial = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: function() {
+        const img = CONFIG.imageDirectory + jsPsych.timelineVariable('stimulus');
+        return `<div style="margin-bottom:40px;"><img src="${img}" style="width:280px; height:280px;"></div>`;
+    },
+    choices: function() {
+        return [jsPsych.timelineVariable('choice1'), jsPsych.timelineVariable('choice2')];
+    },
+    button_html: `<button class="jspsych-btn" style="padding:10px; margin:0 30px;"><img src="${CONFIG.imageDirectory}%choice%" style="width:220px; height:220px; display:block;"></button>`,
+    prompt: `<p style="max-width:500px; margin:30px auto 0;">Select the image that is most similar to the image on top.</p>`,
+    data: {
+        task: 'triplet',
+        triplet_type: jsPsych.timelineVariable('triplet_type'),
+        trial_id: jsPsych.timelineVariable('trial_id'),
+        triplet_index: jsPsych.timelineVariable('triplet_index'),
+        head: jsPsych.timelineVariable('stimulus'),
+        choice1: jsPsych.timelineVariable('choice1'),
+        choice2: jsPsych.timelineVariable('choice2'),
+        choice1_role: jsPsych.timelineVariable('choice1_role'),
+        choice2_role: jsPsych.timelineVariable('choice2_role')
+    },
+    on_finish: function(data) {
+        // winner = chosen image, loser = the other (head / winner / loser triplet format)
+        data.winner = data.response === 0 ? data.choice1 : data.choice2;
+        data.loser = data.response === 0 ? data.choice2 : data.choice1;
+        data.chosen_role = data.response === 0 ? data.choice1_role : data.choice2_role;
+        data.speedy = data.rt < CONFIG.speedThreshold;
+        if (data.triplet_type === 'check') {
+            data.correct = data.chosen_role === 'identical';
+        }
+        completed_main_trials++;
+        jsPsych.setProgressBar(completed_main_trials / n_main_trials);
+    }
+};
+
+const speedFeedback = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "<p><strong>You're going too fast.</strong></p>Please slow down and assess each set of images.<p>Press 'y' to continue.</p>",
+    choices: ['y']
+};
+
+const checkFeedback = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "<p><strong>Incorrect!</strong></p>That was an attention check. Please pay attention while completing this task.<p>Press 'y' to continue.</p>",
+    choices: ['y']
+};
+
+const lastTriplet = () => jsPsych.data.get().filter({ task: 'triplet' }).last(1).values()[0];
+
+const mainProcedure = {
+    timeline: [
+        { type: jsPsychHtmlKeyboardResponse, stimulus: '+', choices: "NO_KEYS", trial_duration: 500 },
+        tripletTrial,
+        {
+            timeline: [checkFeedback],
+            conditional_function: () => lastTriplet().triplet_type === 'check' && !lastTriplet().correct
+        },
+        {
+            timeline: [speedFeedback],
+            conditional_function: () => lastTriplet().speedy && lastTriplet().triplet_type !== 'check'
+        }
+    ],
+    timeline_variables: [],
+    randomize_order: false
+};
+
+const breakTrial = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: function() {
+        const pct = Math.round((completed_main_trials / n_main_trials) * 100);
+        return `<p><strong>Time for a break!</strong></p>
+                <p>You are <strong>${pct}%</strong> of the way through the picture task.</p>
+                <p>Take a moment to rest, then click the button below when you are ready to continue.</p>
+                <p>Remember: your task is to select the image on the bottom that is most similar to the image on top.</p>`;
+    },
+    choices: ['Continue']
+};
+
+const strategy = {
+    type: jsPsychSurveyText,
+    preamble: "<p>You have finished the picture task!</p>",
+    questions: [
+        { prompt: "In a sentence or two, how did you decide which image was most similar to the one on top?", rows: 4, columns: 70, name: "strategy", required: false }
+    ],
+    data: { task: 'strategy' }
+};
+
+// ============================================================================
+// PART 3: QUESTIONNAIRES
+// ============================================================================
+
+const questionnaire_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p>Great work!</p><p>For the last part of the study, you will answer some questions about how you think and about yourself.</p><p>There are no right or wrong answers. Please answer honestly.</p>",
+    choices: ["Continue"],
+    post_trial_gap: 500
+};
+
+// Collected questionnaire answers (1-indexed ratings), written to one summary row at the end
+const Q = { vviq: {}, irq: {}, sscs: {} };
+
+function likertPage(scale, items, labels, preamble) {
+    // items: [{id, prompt}]; ratings are stored 1..labels.length under Q[scale][id]
+    return {
+        type: jsPsychSurveyLikert,
+        preamble: preamble || '',
+        questions: items.map(it => ({ prompt: it.prompt, labels: labels, required: true, name: `${scale}_${it.id}` })),
+        randomize_question_order: false,
+        scale_width: 760,
+        data: { task: scale, item_order: items.map(it => it.id).join('|') },
+        on_finish: function(data) {
+            for (const [name, value] of Object.entries(data.response)) {
+                Q[scale][name.replace(`${scale}_`, '')] = value + 1;
+            }
+        }
+    };
+}
+
+// --- VVIQ (Vividness of Visual Imagery Questionnaire; Marks, 1973) ---
+const VVIQ_SCALE = [
+    "No image at all, you only 'know' that you are thinking of the object",
+    "Vague and dim",
+    "Moderately clear and vivid",
+    "Clear and reasonably vivid",
+    "Perfectly clear and as vivid as normal vision"
+];
+
+const VVIQ_SCENARIOS = [
+    {
+        prompt: "Think of some relative or friend whom you frequently see (but who is not with you at present) and consider carefully the picture that comes before your mind's eye.",
+        items: [
+            "The exact contour of face, head, shoulders and body.",
+            "Characteristic poses of head, attitudes of body etc.",
+            "The precise carriage, length of step etc. in walking.",
+            "The different colours worn in some familiar clothes."
+        ]
+    },
+    {
+        prompt: "Visualize a rising sun. Consider carefully the picture that comes before your mind's eye.",
+        items: [
+            "The sun is rising above the horizon into a hazy sky.",
+            "The sky clears and surrounds the sun with blueness.",
+            "Clouds. A storm blows up, with flashes of lightning.",
+            "A rainbow appears."
+        ]
+    },
+    {
+        prompt: "Think of the front of a shop which you often go to. Consider the picture that comes before your mind's eye.",
+        items: [
+            "The overall appearance of the shop from the opposite side of the road.",
+            "A window display including colours, shapes and details of individual items for sale.",
+            "You are near the entrance. The colour, shape and details of the door.",
+            "You enter the shop and go to the counter. The counter assistant serves you. Money changes hands."
+        ]
+    },
+    {
+        prompt: "Finally think of a country scene which involves trees, mountains and a lake. Consider the picture that comes before your mind's eye.",
+        items: [
+            "The contours of the landscape.",
+            "The colour and shape of the trees.",
+            "The colour and shape of the lake.",
+            "A strong wind blows on the trees and on the lake causing waves."
+        ]
+    }
+];
+
+const vviq_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<div class="left-text" style="max-width:700px;">
+        <p>First, we'd like to ask you about your visual imagery.</p>
+        <p>The next questions ask you to consider a number of scenarios and to rate the vividness of the image that comes before your mind's eye for each item.</p>
+        <p>For each item, rate your visual imagery according to the following scale:</p>
+        <ol>${VVIQ_SCALE.map(s => `<li>${s}</li>`).join('')}</ol>
+    </div>`,
+    choices: ["Continue"],
+    post_trial_gap: 500
+};
+
+const vviq_pages = VVIQ_SCENARIOS.map((scenario, sIdx) =>
+    likertPage('vviq',
+        scenario.items.map((item, iIdx) => ({ id: sIdx * 4 + iIdx + 1, prompt: item })),
+        VVIQ_SCALE,
+        `<p style="max-width:760px; margin:auto;"><strong>${scenario.prompt}</strong></p>`)
+);
+
+// --- IRQ (Internal Representations Questionnaire; Roebuck & Lupyan, 2020), 36 items ---
+// Item numbers follow experiments/imagery/imagery_v2. Subscales: 1-10 visual imagery,
+// 11-22 internal verbalization, 23-28 orthographic imagery, 29-36 representational manipulation
+// (scoring key lives in analysis/preprocess.py).
+const AGREE_SCALE = ["Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree"];
+
+const IRQ_ITEMS = [
+    "I often enjoy the use of mental pictures to reminisce",
+    "I can close my eyes and easily picture a scene I have experienced",
+    "My mental images are very vivid and photographic",
+    "The old saying 'A picture is worth a thousand words' is certainly true for me",
+    "When I think about someone I know well, I instantly see their face in my mind",
+    "I rarely use mental images or pictures to help me remember things",
+    "My memories are mainly visual in nature",
+    "When traveling to get to somewhere I tend to think more verbally than visually",
+    "If I talk to myself in my head it is rarely accompanied by visual imagery",
+    "If I imagine my memories visually they are more often static than moving",
+    "I think about problems in my mind in the form of a conversation with myself",
+    "If I am walking somewhere by myself, I rarely have a silent conversation with myself",
+    "If I am walking somewhere by myself, I frequently think of conversations that I've recently had",
+    "My inner speech helps my imagination",
+    "I tend to think things through verbally when I am relaxing",
+    "When thinking about a personal problem, I rarely talk it through in my head",
+    "I like to give myself some down time to talk through thoughts in my mind",
+    "I don't hear words in my 'mind's ear' when I think",
+    "I rarely vocalize thoughts in my mind",
+    "I often talk to myself internally while watching TV",
+    "My memories rarely involve conversations I've had",
+    "When I read, I tend to hear a voice in my 'mind's ear'",
+    "When I hear someone talking, I see words written down in my mind",
+    "I don't see words in my 'mind's eye' when I think",
+    "When I am introduced to someone for the first time, I imagine what their name would look like when written down",
+    "A strategy I use to help me remember written material is imagining what the writing looks like",
+    "I hear a running summary of everything I am doing in my head",
+    "I rehearse in my mind how someone might respond to a text message before I send it",
+    "I can easily imagine and mentally rotate three-dimensional geometric figures",
+    "It is hard for me to imagine this sentence in my mind pronounced unnaturally slowly",
+    "In school, I had no problems with geometry",
+    "It is easy for me to imagine the sensation of licking a brick",
+    "I find it difficult to imagine how a three-dimensional geometric figure would exactly look like when rotated",
+    "I can easily imagine someone clearly talking, and then imagine the same voice with a heavy cold",
+    "I think I have a large vocabulary in my native language compared to other people",
+    "I can easily imagine the sound of a trumpet getting louder"
+];
+
+const irq_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `<div class="left-text" style="max-width:700px;">
+        <p>Next are some statements about the ways people think.</p>
+        <p>Please indicate how much you agree or disagree with each statement as a description of you.</p>
+    </div>`,
+    choices: ["Continue"],
+    post_trial_gap: 500
+};
+
+function irqPages() {
+    // items in random order (as in the earlier imagery study), plus one attention-check item
+    let items = IRQ_ITEMS.map((prompt, i) => ({ id: i + 1, prompt: prompt }));
+    items.push({ id: 'catch', prompt: "Select 'Disagree' for this statement" });
+    items = shuffle(items);
+    const pages = [];
+    for (let i = 0; i < items.length; i += 10) {
+        pages.push(likertPage('irq', items.slice(i, i + 10), AGREE_SCALE));
+    }
+    return pages;
+}
+
+// --- Short Scale of Creative Self (Karwowski, 2012): creative self-efficacy (3,4,5,6,8,9)
+//     and creative personal identity (1,2,7,10,11) ---
+const SSCS_SCALE = ["Definitely not", "Somewhat not", "Neither yes nor no", "Somewhat yes", "Definitely yes"];
+const SSCS_ITEMS = [
+    "I think I am a creative person",
+    "My creativity is important for who I am",
+    "I know I can efficiently solve even complicated problems",
+    "I trust my creative abilities",
+    "My imagination and ingenuity distinguishes me from my friends",
+    "Many times I have proved that I can cope with difficult situations",
+    "Being a creative person is important to me",
+    "I am sure I can deal with problems requiring creative thinking",
+    "I am good at proposing original solutions to problems",
+    "Creativity is an important part of myself",
+    "Ingenuity is a characteristic that is important to me"
+];
+
+const sscs = likertPage('sscs',
+    SSCS_ITEMS.map((prompt, i) => ({ id: i + 1, prompt: prompt })),
+    SSCS_SCALE,
+    `<p style="max-width:760px; margin:auto;">Finally, please decide to what extent each of the statements below describes you.</p>`);
+
+// One row holding all questionnaire answers in fixed item order (pipe-delimited, 1-indexed;
+// "vviq" matches the column convention in filtereddata_perception_Exp2.csv)
+const summary = {
+    type: jsPsychCallFunction,
+    func: function() {},
+    data: { task: 'summary' },
+    on_finish: function(data) {
+        const ordered = (obj, n) => Array.from({ length: n }, (_, i) => obj[i + 1] ?? '').join('|');
+        data.vviq = ordered(Q.vviq, 16);
+        data.irq = ordered(Q.irq, 36);
+        data.irq_catch = Q.irq['catch'] ?? '';
+        data.sscs = ordered(Q.sscs, 11);
+        const trip = jsPsych.data.get().filter({ task: 'triplet' });
+        data.n_triplets = trip.count();
+        data.n_checks_correct = trip.filter({ triplet_type: 'check', correct: true }).count();
+        data.total_minutes = Math.round(jsPsych.getTotalTime() / 6000) / 10;
+    }
+};
+
+// --- Demographics ---
+const demographic_instructions = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p>Almost done!</p><p>For this last part of the experiment, please provide us with information about yourself.</p>",
+    choices: ["Continue"],
+    post_trial_gap: 500
+};
+
+const demographics = {
+    type: jsPsychSurveyMultiSelect,
+    questions: [
+        {
+            prompt: "Which categories describe you? Select all that apply to you:",
+            options: [
+                "American Indian or Alaska Native - For example, Navajo Nation, Mayan",
+                "Asian - For example, Chinese, Asian Indian",
+                "Black or African American - For example, Jamaican, Ethiopian",
+                "Hispanic or Latino - For example, Mexican or Mexican American, Puerto Rican, Salvadoran",
+                "Middle Eastern or North African - For example, Lebanese, Iranian, Moroccan",
+                "Native Hawaiian or Other Pacific Islander - For example, Samoan, Fijian",
+                "White - For example, German, Irish",
+                "Some other race, ethnicity, or origin",
+                "I prefer not to answer"
+            ],
+            horizontal: false,
+            required: true,
+            name: 'race_eth'
+        }
+    ],
+    data: { task: 'demographics' }
+};
+
+const id_age = {
+    type: jsPsychSurveyText,
+    questions: [
+        { prompt: "Please enter your age (in years):", rows: 1, columns: 6, name: "age", required: true },
+        { prompt: "How do you currently describe your gender identity? Please specify.", rows: 1, columns: 60, name: "gender" },
+        { prompt: "What is your first language (the language you learned first as a child)?", rows: 1, columns: 40, name: "first_language", required: true },
+        { prompt: "What is your major or field of study?", rows: 1, columns: 60, name: "major", required: false }
+    ],
+    data: { task: 'demographics' }
+};
+
+const vision = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+        {
+            prompt: "Do you have normal color vision?",
+            options: ["Yes", "No (I am colorblind)", "Not sure"],
+            horizontal: true,
+            required: true,
+            name: 'color_vision'
+        }
+    ],
+    data: { task: 'demographics' }
+};
+
+const goodbye = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "Woohoo! You have finished the experiment.<br>Click the button below to complete the experiment and receive your SONA credit.<br><br>",
+    choices: ['Complete Experiment']
+};
+
+// ============================================================================
+// MAIN EXECUTION
+// ============================================================================
+
+async function initializeExperiment() {
+    let design;
+    try {
+        design = await (await fetch(CONFIG.designFile)).json();
+    } catch (error) {
+        console.error('Error loading design:', error);
+        alert('Failed to load the experiment design (' + CONFIG.designFile + ').');
+        return;
+    }
+    ITEMS = design.items;
+    ITEMS.forEach(it => { ITEM_INFO[it.image_name] = it; });
+    console.log(`Loaded ${ITEMS.length} images and ${design.fixed_trials.length} fixed trials`);
+
+    const allTrials = createTrialSequence(design);
+    n_main_trials = allTrials.length;
+
+    timeline.push({
+        type: jsPsychPreload,
+        images: ITEMS.map(it => CONFIG.imageDirectory + it.image_name),
+        message: '<p>Loading, please wait...</p>'
+    });
+    timeline.push(welcome);
+    timeline.push(fullscreen);
+    timeline.push(consent);
+    timeline.push(overview);
+
+    // Part 1: creativity
+    timeline.push(dat);
+    timeline.push(aut_instructions);
+    CONFIG.autObjects.forEach((obj, i) => {
+        timeline.push(autTrial(obj));
+        if (i < CONFIG.autObjects.length - 1) {
+            timeline.push({
+                type: jsPsychHtmlButtonResponse,
+                stimulus: "<p>Time is up for that object.</p><p>Click below when you are ready for the next one.</p>",
+                choices: ["Next object"]
+            });
+        }
+    });
+    timeline.push({
+        type: jsPsychHtmlButtonResponse,
+        stimulus: "<p>Time is up. Nice work!</p><p>Next is the picture task.</p>",
+        choices: ["Continue"]
+    });
+
+    // Part 2: triplets, in blocks with breaks
+    timeline.push(triplet_instructions);
+    const chunkSize = Math.ceil(allTrials.length / CONFIG.numBlocks);
+    for (let i = 0; i < allTrials.length; i += chunkSize) {
+        timeline.push(Object.assign({}, mainProcedure, { timeline_variables: allTrials.slice(i, i + chunkSize) }));
+        if (i + chunkSize < allTrials.length) timeline.push(breakTrial);
+    }
+    timeline.push(strategy);
+    if (!TEST_MODE) timeline.push(saveData('partial'));   // safety copy before the questionnaires
+
+    // Part 3: questionnaires
+    timeline.push(questionnaire_instructions);
+    timeline.push(vviq_instructions);
+    vviq_pages.forEach(p => timeline.push(p));
+    timeline.push(irq_instructions);
+    irqPages().forEach(p => timeline.push(p));
+    timeline.push(sscs);
+    timeline.push(demographic_instructions);
+    timeline.push(demographics);
+    timeline.push(id_age);
+    timeline.push(vision);
+    timeline.push(summary);
+    if (!TEST_MODE) timeline.push(saveData(''));
+    timeline.push(goodbye);
+
+    jsPsych.run(timeline);
+}
+
+initializeExperiment();
+
+</script>
+</html>
